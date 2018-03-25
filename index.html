@@ -25,9 +25,9 @@ class HelloDiv extends HTMLElement {
   constructor() {
     super();
     const template = document.querySelector('#hello');
-    this.createShadowRoot();
-
     const node = document.importNode(template.content, true);
+
+    this.createShadowRoot();
     this.shadowRoot.appendChild(node);
   }
 }
