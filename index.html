@@ -1,0 +1,46 @@
+<html>
+<head>
+
+<style>
+span {
+  color: white;
+  background-color: black;
+}
+</style>
+
+<template id="hello">
+  <style>
+    .colored {
+      color: red;
+    }
+  </style>
+
+  <div class="colored">
+    Hello, <span><content></content></span>!
+  </div>
+</template>
+
+<script>
+class HelloDiv extends HTMLElement {
+  constructor() {
+    super();
+    const template = document.querySelector('#hello');
+    this.createShadowRoot();
+
+    const node = document.importNode(template.content, true);
+    this.shadowRoot.appendChild(node);
+  }
+}
+customElements.define('hello-tag', HelloDiv);
+</script>
+
+</head>
+<body>
+
+<div><span>fugafuga</span></div>
+<hello-tag>World</hello-tag>
+<div><span>hogehoge</span></div>
+<hello-tag>iwtn</hello-tag>
+
+</body>
+</html>
